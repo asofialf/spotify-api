@@ -18,6 +18,9 @@ public class Podcast {
     @GeneratedValue ( strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="podcast_name", nullable = false)
+    private String podcastName;
+
     @Column(name = "duration", nullable = false)
     private double duration;
 
