@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sofiaalfaro.spotifyapi.dto.UserDto;
+import sofiaalfaro.spotifyapi.exception.ValidationException;
 import sofiaalfaro.spotifyapi.model.User;
 import sofiaalfaro.spotifyapi.repository.UserRepository;
 import sofiaalfaro.spotifyapi.service.UserService;
@@ -31,6 +32,9 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public UserDto createUser(User user){
+        if(userRepository.existsByUsername(user.getUsername())){
+            throw new ValidationException("Ya existe un usuario con el mismo username");
+        }
         User savedUser = userRepository.save(user);
         return modelMapper.map(savedUser, UserDto.class);
     }

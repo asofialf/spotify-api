@@ -1,10 +1,15 @@
 package sofiaalfaro.spotifyapi.dto;
 
+import lombok.Builder;
 import lombok.Data;
+import sofiaalfaro.spotifyapi.model.Artist;
+import sofiaalfaro.spotifyapi.model.Playlist;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
+@Builder
 public class UserDto {
     private String username;
     private String password;
@@ -12,5 +17,6 @@ public class UserDto {
     private String address;
 
     private String country;
-    private Long artistId;
+    private Artist artist;
+    private List<Playlist> playlists;
 }

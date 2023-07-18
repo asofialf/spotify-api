@@ -24,13 +24,7 @@ public class Playlist {
     @Column(name="name", nullable = false)
     private String name;
     @Column(name = "creation_date", nullable = true)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDate creationDate;
-
-    @PrePersist
-    protected void onCreate() {
-        creationDate = LocalDate.now();
-    }
     @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Song> songs;
     @ManyToOne
